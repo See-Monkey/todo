@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planet</title>
+    <title>Planit</title>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <div class="logo">
-                <div class="logoImg">
-
-                </div>
-                <h1>Planit</h1>
+                <div class="logoImg"></div>
+                <h1 class="logoText">Planit</h1>
             </div>
+            <!-- project uuid -->
             <button class="project">Project 1</button>
             <button class="project">Project 2</button>
             <div class="addProject">
@@ -23,25 +22,29 @@
         </div>
         <div class="content">
             <div class="header">
-                <h2 class="activeProject">Active Project</h2>
-                <h3>Due Date</h3>
+                <input type="text" class="activeProject" value="Active Project">
+                <button id="editProjectBtn">Edit</button>
+                <h3 class="dueDateHeader">Due Date</h3>
             </div>
+            <!-- note uuid -->
             <div class="note">
                 <div class="noteHeader">
                     <button id="noteCheckedBtn">O</button>
-                    <h4 class="noteTitle">Note title</h4>
+                    <input type="text" class="noteTitle" value="This is an example note.">
                     <h5 class="priorityFlag">High Priority</h5>
-                    <p class="dueDate">Today</p>
+                    <input type="text" class="dueDate" value="Today">
                     <button id="expandBtn">V</button>
                 </div>
                 <div class="noteBody">
-                    <div class="desc">
+                    <textarea class="desc" rows="3">
                         Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!
-                    </div>
+                    </textarea>
                     <div class="list">
+                        <!-- list item uuid -->
                         <div class="listItem">
-                            <div class="listIcon"></div>
-                            <p>List item text</p>
+                            <button id="listItemCheckedBtn">O</button>
+                            <p class="listItemText">List item text</p>
+                            <button id="deleteListItemBtn">Del</button>
                         </div>
                     </div>
                     <div class="noteCtrl">

@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-h1 {
+h1.logoText {
 
 }
 
@@ -119,18 +119,21 @@ input.inputProject {
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 10px;
+  gap: 20px;
 }
 
-h2.activeProject {
-
+.activeProject {
+  field-sizing: content;
 }
 
-h3 {
-
+.dueDateHeader {
+  margin-left: auto;
 }
 
 .note {
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .noteHeader {
@@ -143,16 +146,16 @@ h3 {
 
 }
 
-h4 {
-
+.noteTitle {
+  field-sizing: content;
 }
 
-h5 {
+.priorityFlag {
   margin-left: auto;
 }
 
 .dueDate {
-
+  field-sizing: content;
 }
 
 #expandBtn {
@@ -164,22 +167,30 @@ h5 {
 }
 
 .desc {
-
+  width: 100%;
 }
 
 .list {
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .listItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#listItemCheckedBtn {
 
 }
 
-.listIcon {
+.listItemText {
 
 }
 
-.listItem p {
+#deleteListItemBtn {
 
 }
 

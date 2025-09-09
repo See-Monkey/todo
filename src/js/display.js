@@ -10,4 +10,16 @@ export default class Display {
     //redraw
 
     //init
+
+    //expand newProject input
+
+    //collapse newProject input
+
+    //expand note
+
+    //collapse note
+
+    //editNote on
+
+    //editNote off
 }
