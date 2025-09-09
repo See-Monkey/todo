@@ -6,6 +6,58 @@
     <title>Planet</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logoImg">
+
+                </div>
+                <h1>Planit</h1>
+            </div>
+            <button class="project">Project 1</button>
+            <button class="project">Project 2</button>
+            <div class="addProject">
+                <input type="text" class="inputProject" placeholder="New Project" size="13">
+                <button id="addProjectBtn">+</button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <h2 class="activeProject">Active Project</h2>
+                <h3>Due Date</h3>
+            </div>
+            <div class="note">
+                <div class="noteHeader">
+                    <button id="noteCheckedBtn">O</button>
+                    <h4 class="noteTitle">Note title</h4>
+                    <h5 class="priorityFlag">High Priority</h5>
+                    <p class="dueDate">Today</p>
+                    <button id="expandBtn">V</button>
+                </div>
+                <div class="noteBody">
+                    <div class="desc">
+                        Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!
+                    </div>
+                    <div class="list">
+                        <div class="listItem">
+                            <div class="listIcon"></div>
+                            <p>List item text</p>
+                        </div>
+                    </div>
+                    <div class="noteCtrl">
+                        <label for="priority">Priority:</label>
+                        <select id="priority" name="priority">
+                            <option value="high">High</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <button id="editNoteBtn">Edit</button>
+                        <button id="deleteNoteBtn">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <button id="addNoteBtn">+</button>
+        </div>
+    </div>
 </body>
 </html>

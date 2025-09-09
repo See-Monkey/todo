@@ -37,4 +37,178 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ============ global ============ */
 :root {
+  --black: #222223;
+  --gray: #838386;
+  --silver: #c1c1c0;
+  --white: #fffffa;
+  --d-green: #0d3d42;
+  --green: #0d5c63;
+  --teal: #247b7b;
+  --l-teal: #44a1a0;
+  --blue: #78cdd7;
+  --red: #ae1c2a;
+}
+
+.container {
+  background-color: var(--d-green);
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* ============ sidebar ============ */
+.sidebar {
+  background-color: var(--green);
+  display: grid;
+  justify-items: center;
+  align-items: stretch;
+  grid-template-rows: 80px;
+  grid-auto-rows: 50px;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 0px 60px 20px 0px;
+}
+
+.logo {
+  display: flex;
+}
+
+.logoImg {
+
+}
+
+h1 {
+
+}
+
+button.project {
+  width: 75%;
+}
+
+.addProject {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+}
+
+input.inputProject {
+  min-width: 0px;
+  flex: 1;
+  padding: 12px;
+}
+
+#addProjectBtn {
+  width: 50px;
+}
+
+/* ============ content ============ */
+.content {
+  background-color: var(--green);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 60px 20px 20px 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+h2.activeProject {
+
+}
+
+h3 {
+
+}
+
+.note {
+
+}
+
+.noteHeader {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#noteCheckedBtn {
+
+}
+
+h4 {
+
+}
+
+h5 {
+  margin-left: auto;
+}
+
+.dueDate {
+
+}
+
+#expandBtn {
+
+}
+
+.noteBody {
+
+}
+
+.desc {
+
+}
+
+.list {
+
+}
+
+.listItem {
+
+}
+
+.listIcon {
+
+}
+
+.listItem p {
+
+}
+
+.noteCtrl {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.noteCtrl label {
+
+}
+
+.noteCtrl select {
+
+}
+
+.noteCtrl button {
+
+}
+
+#editNoteBtn {
+
+}
+
+#deleteNoteBtn {
+
+}
+
+#addNoteBtn {
+  width: 50px;
 }
