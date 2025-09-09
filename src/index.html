@@ -23,28 +23,31 @@
         <div class="content">
             <div class="header">
                 <input type="text" class="activeProject" value="Active Project">
-                <button id="editProjectBtn">Edit</button>
+                <button id="editProjectBtn"></button>
                 <h3 class="dueDateHeader">Due Date</h3>
+                <button id="sortBtn"></button>
             </div>
             <!-- note uuid -->
             <div class="note">
                 <div class="noteHeader">
-                    <button id="noteCheckedBtn">O</button>
+                    <button id="noteCheckedBtn"></button>
                     <input type="text" class="noteTitle" value="This is an example note.">
                     <h5 class="priorityFlag">High Priority</h5>
                     <input type="text" class="dueDate" value="Today">
-                    <button id="expandBtn">V</button>
+                    <button id="expandBtn"></button>
                 </div>
                 <div class="noteBody">
-                    <textarea class="desc" rows="3">
-                        Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!
-                    </textarea>
+                    <textarea class="desc" rows="3">Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!</textarea>
                     <div class="list">
                         <!-- list item uuid -->
                         <div class="listItem">
-                            <button id="listItemCheckedBtn">O</button>
+                            <button id="listItemCheckedBtn"></button>
                             <p class="listItemText">List item text</p>
-                            <button id="deleteListItemBtn">Del</button>
+                            <button id="deleteListItemBtn"></button>
+                        </div>
+                        <div class="addListItem">
+                            <button id="addListItemBtn"></button>
+                            <input type="text" class="inputListItem" placeholder="New List Item">
                         </div>
                     </div>
                     <div class="noteCtrl">
@@ -54,8 +57,8 @@
                             <option value="normal" selected>Normal</option>
                             <option value="low">Low</option>
                         </select>
-                        <button id="editNoteBtn">Edit</button>
-                        <button id="deleteNoteBtn">Delete</button>
+                        <button id="editNoteBtn"></button>
+                        <button id="deleteNoteBtn"></button>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ export default class Display {
 
     //init
 
+    //these functions can all come later to avoid full redraw
     //expand newProject input
 
     //collapse newProject input

@@ -74,13 +74,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo {
   display: flex;
+  gap: 10px;
+  margin-right: 20px;
 }
 
 .logoImg {
-
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/planet.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
 }
 
-h1.logoText {
+.logoText {
 
 }
 
@@ -92,6 +99,7 @@ button.project {
   width: 75%;
   display: flex;
   justify-content: center;
+  gap: 10px;
 }
 
 input.inputProject {
@@ -102,12 +110,19 @@ input.inputProject {
 
 #addProjectBtn {
   width: 50px;
+  height: 50px;
+  background-image: url("../img/plus.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
 
 /* ============ content ============ */
 .content {
   background-color: var(--green);
   padding: 20px;
+  padding-left: 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -119,6 +134,7 @@ input.inputProject {
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 10px;
+  margin-bottom: 30px;
   gap: 20px;
 }
 
@@ -126,14 +142,35 @@ input.inputProject {
   field-sizing: content;
 }
 
+#editProjectBtn {
+  width: 40px;
+  height: 40px;
+  background-image: url("../img/edit.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px 35px;
+  border-radius: 20px;
+}
+
 .dueDateHeader {
   margin-left: auto;
+}
+
+#sortBtn {
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/sort.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px 35px;
+  border-radius: 20px;
 }
 
 .note {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 30px;
 }
 
 .noteHeader {
@@ -143,7 +180,13 @@ input.inputProject {
 }
 
 #noteCheckedBtn {
-
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/unchecked.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
 
 .noteTitle {
@@ -159,15 +202,22 @@ input.inputProject {
 }
 
 #expandBtn {
-
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/expand.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
 
 .noteBody {
-
+  margin-top: 20px;
 }
 
 .desc {
   width: 100%;
+  text-align: left;
 }
 
 .list {
@@ -183,7 +233,13 @@ input.inputProject {
 }
 
 #listItemCheckedBtn {
-
+  width: 46px;
+  height: 28px;
+  background-image: url("../img/toggle-switch-off.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 14px;
 }
 
 .listItemText {
@@ -191,13 +247,41 @@ input.inputProject {
 }
 
 #deleteListItemBtn {
+  width: 35px;
+  height: 35px;
+  background-image: url("../img/delete.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  border-radius: 20px;
+  margin-left: 50px;
+}
 
+.addListItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#addListItemBtn {
+  width: 35px;
+  height: 35px;
+  background-image: url("../img/plus.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  border-radius: 20px;
+}
+
+.inputListItem {
+  field-sizing: content;
 }
 
 .noteCtrl {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  align-items: center;
+  gap: 20px;
 }
 
 .noteCtrl label {
@@ -208,18 +292,32 @@ input.inputProject {
 
 }
 
-.noteCtrl button {
-
-}
-
 #editNoteBtn {
-
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/edit.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
 
 #deleteNoteBtn {
-
+  width: 50px;
+  height: 50px;
+  background-image: url("../img/delete.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
 
 #addNoteBtn {
   width: 50px;
+  height: 50px;
+  background-image: url("../img/plus.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+  border-radius: 25px;
 }
