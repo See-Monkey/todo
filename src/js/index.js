@@ -35,6 +35,9 @@ document.addEventListener("click", (e) => {
         case "deleteListItemBtn":
             console.log("clicked deleteListItem button");
             break;
+        case "addListItemBtn":
+            console.log("clicked addListItem button");
+            break;
         case "editNoteBtn":
             console.log("clicked editNote button");
             break;

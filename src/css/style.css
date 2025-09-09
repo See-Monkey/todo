@@ -47,10 +47,11 @@ h1, h2, h3, h4, h5, h6 {
   --l-teal: #44a1a0;
   --blue: #78cdd7;
   --red: #ae1c2a;
+  --l-red: #c44955;
 }
 
 .container {
-  background-color: var(--d-green);
+  background-image: linear-gradient(180deg, var(--d-green), var(--black));
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -59,9 +60,19 @@ h1, h2, h3, h4, h5, h6 {
   gap: 20px;
 }
 
+button {
+  border: none;
+  box-shadow: 2px 2px 6px var(--black);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 /* ============ sidebar ============ */
 .sidebar {
-  background-color: var(--green);
+  background-image: linear-gradient(180deg, var(--teal), var(--green));
+  box-shadow: 3px 5px 8px var(--teal);
   display: grid;
   justify-items: center;
   align-items: stretch;
@@ -85,18 +96,27 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50px 50px;
+  filter: drop-shadow(2px 2px 4px var(--blue));
 }
 
 .logoText {
-
+  text-shadow: 2px 2px 4px var(--blue);
 }
 
 button.project {
-  width: 75%;
+  width: 85%;
+  background-color: #0d3d4222;
+  background-image: linear-gradient(90deg, #00000000, var(--green), #00000000);
+  color: var(--white);
+  border-radius: 6px;
+}
+
+button.project:hover {
+  box-shadow: 2px 2px 24px var(--l-teal); 
 }
 
 .addProject {
-  width: 75%;
+  width: 85%;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -106,6 +126,12 @@ input.inputProject {
   min-width: 0px;
   flex: 1;
   padding: 12px;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+input.inputProject:disabled {
+  display: none;
 }
 
 #addProjectBtn {
@@ -116,17 +142,25 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--l-teal);
+}
+
+#addProjectBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 /* ============ content ============ */
 .content {
-  background-color: var(--green);
+  background-image: linear-gradient(180deg, var(--teal), var(--green));
   padding: 20px;
   padding-left: 50px;
+  padding-right: 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-radius: 60px 20px 20px 20px;
+  box-shadow: 3px 5px 8px var(--teal);
 }
 
 .header {
@@ -134,12 +168,25 @@ input.inputProject {
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 10px;
-  margin-bottom: 30px;
-  gap: 20px;
+  padding-bottom: 20px;
+  gap: 10px;
+  border-bottom: 2px solid var(--green);
 }
 
 .activeProject {
   field-sizing: content;
+  background-color: var(--white);
+  padding: 0px 12px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.activeProject:disabled {
+  border: none;
+  background-color: #00000000;
+  text-shadow: 2px 2px 4px var(--blue);
+  color: black;
+
 }
 
 #editProjectBtn {
@@ -148,12 +195,21 @@ input.inputProject {
   background-image: url("../img/edit.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 35px 35px;
+  background-size: 34px 34px;
   border-radius: 20px;
+  background-color: var(--l-teal);
+  align-self: center;
+}
+
+#editProjectBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .dueDateHeader {
   margin-left: auto;
+  margin-right: 20px;
+  text-shadow: 1px 1px 3px var(--blue);
 }
 
 #sortBtn {
@@ -164,19 +220,32 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 35px 35px;
   border-radius: 20px;
+  background-color: var(--l-teal);
+}
+
+#sortBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .note {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 6px;
+  background-image: linear-gradient(180deg, var(--silver), var(--gray));
+  padding: 6px;
+  border-radius: 12px;
+  box-shadow: 3px 5px 8px var(--black);
 }
 
 .noteHeader {
   display: flex;
   gap: 20px;
   align-items: center;
+  background-color: var(--white);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 2px 4px 6px var(--black);
 }
 
 #noteCheckedBtn {
@@ -187,18 +256,46 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--silver);
+}
+
+#noteCheckedBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .noteTitle {
   field-sizing: content;
+  background-color: var(--white);
+  padding: 0px 8px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.noteTitle:disabled {
+  border: none;
+  background-color: #00000000;
+  color: black;
 }
 
 .priorityFlag {
   margin-left: auto;
+  padding: 3px 8px;
+  background-color: var(--red);
+  color: var(--silver);
+  border-radius: 5px;
 }
 
 .dueDate {
   field-sizing: content;
+  background-color: var(--white);
+  padding: 0px 8px;
+}
+
+.dueDate:disabled {
+  border: none;
+  background-color: #00000000;
+  color: black;
 }
 
 #expandBtn {
@@ -209,15 +306,33 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--silver);
+}
+
+#expandBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .noteBody {
-  margin-top: 20px;
+  background-color: var(--silver);
+  padding: 10px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .desc {
   width: 100%;
   text-align: left;
+  resize: none;
+  background-color: var(--white);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.desc:disabled {
+  border: none;
+  background-color: #00000000;
+  color: black;
 }
 
 .list {
@@ -240,6 +355,12 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 14px;
+  background-color: var(--silver);
+}
+
+#listItemCheckedBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .listItemText {
@@ -247,14 +368,20 @@ input.inputProject {
 }
 
 #deleteListItemBtn {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   background-image: url("../img/delete.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 30px 30px;
   border-radius: 20px;
   margin-left: 50px;
+  background-color: var(--red);
+}
+
+#deleteListItemBtn:hover {
+  background-color: var(--l-red);
+  box-shadow: 2px 2px 14px var(--red);
 }
 
 .addListItem {
@@ -271,10 +398,19 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 30px 30px;
   border-radius: 20px;
+  background-color: var(--silver);
+}
+
+#addListItemBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 .inputListItem {
   field-sizing: content;
+  background-color: var(--white);
+  padding: 0px 8px;
+  border-radius: 6px;
 }
 
 .noteCtrl {
@@ -289,7 +425,17 @@ input.inputProject {
 }
 
 .noteCtrl select {
+  background-color: var(--white);
+  padding: 4px 8px;
+  font-weight: 500;
+  border-radius: 6px;
+}
 
+.noteCtrl select:disabled {
+  border: none;
+  background-color: #00000000;
+  color: black;
+  appearance: none;
 }
 
 #editNoteBtn {
@@ -300,6 +446,12 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--l-teal);
+}
+
+#editNoteBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }
 
 #deleteNoteBtn {
@@ -310,6 +462,12 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--red);
+}
+
+#deleteNoteBtn:hover {
+  background-color: var(--l-red);
+  box-shadow: 2px 2px 14px var(--red);
 }
 
 #addNoteBtn {
@@ -320,4 +478,10 @@ input.inputProject {
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
+  background-color: var(--l-teal);
+}
+
+#addNoteBtn:hover {
+  background-color: var(--blue);
+  box-shadow: 2px 2px 14px var(--l-teal);
 }

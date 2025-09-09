@@ -48,6 +48,7 @@ class Project {
         this.note = [];
         this.active = false;
         this.edit = false;
+        this.projectID = crypto.randomUUID();
     }
 
         addNote(title, desc, dueDate, priority) {
@@ -109,6 +110,8 @@ class Note {
         this.list = [];
         this.checked = false;
         this.edit = false;
+        this.expand = false;
+        this.noteID = crypto.randomUUID();
     }
 
     addListItem(item) {
@@ -133,6 +136,7 @@ class ListItem {
     constructor(item) {
         this.item = item;
         this.checked = false;
+        this.itemID = crypto.randomUUID();
     }
 }
 
