@@ -6,32 +6,11 @@ class Projects {
     addProject(name) {
         const newProject = new Project(name);
         this.project.push(newProject);
+        this.setActive(this.project.length - 1)
     }
 
     deleteProject(index) {
         this.project.splice[index, 1];
-    }
-
-    toggleEdit(index) {
-        if (this.project[index].edit === false) {
-            this.editOn(index);
-        } else {
-            this.submitEdit(index);
-        }
-    }
-
-    editOn(index) {
-        this.project[index].edit = true;
-    }
-
-    submitEdit(index, name) {
-        //get value from display
-        //set value to array at index
-        this.editOff(index);
-    }
-
-    editOff(index) {
-        this.project[index].edit = false;
     }
     
     setActive(index) {
@@ -59,46 +38,16 @@ class Project {
         deleteNote(index) {
             this.note.splice(index, 1);
         }
-       
-        toggleEditNote(index) {
-            if (this.note[index].edit === false) {
-                this.editNoteOn(index);
-            } else {
-                this.submitNoteEdit(index);
-            }
+
+        editOn() {
+            this.edit = true;
         }
 
-        editNoteOn(index) {
-            this.note[index].edit = true;
+        editOff() {
+            this.edit = false;
         }
 
-        submitNoteEdit(index, title, desc, dueDate, priority) {
-            //get values from display
-            //set values to array at index
-            this.editNoteOff(index);
-        }
-
-        editNoteOff(index) {
-            this.note[index].edit = false;
-        }
-
-        checkNote(index) {
-            this.note[index].checked = true;
-
-            this.note[index].list.forEach(item => {
-            item.checked = true;
-            });
-        }
-
-        uncheckNote(index) {
-            this.note[index].checked = false;
-
-            this.note[index].list.forEach(item => {
-            item.checked = false;
-            });
-        }
-        //sort notes
-    
+        //sort notes  
 }
 
 class Note {
@@ -123,12 +72,36 @@ class Note {
         this.list.splice(index, 1);
     }
 
-    checkListItem(index) {
-        this.list[index].checked = true;
+    editNoteOn() {
+        this.edit = true;
     }
 
-    uncheckListItem(index) {
-        this.list[index].checked = false;
+    editNoteOff() {
+        this.edit = false;
+    }
+
+    checkNote() {
+        this.checked = true;
+
+        this.list.forEach(item => {
+        item.checked = true;
+        });
+    }
+
+    uncheckNote() {
+        this.checked = false;
+
+        this.list.forEach(item => {
+        item.checked = false;
+        });
+    }
+
+    expandNote() {
+        this.expand = true;
+    }
+
+    collapse() {
+        this.expand = false;
     }
 }
 
@@ -137,6 +110,14 @@ class ListItem {
         this.item = item;
         this.checked = false;
         this.itemID = crypto.randomUUID();
+    }
+
+    checkListItem() {
+        this.checked = true;
+    }
+
+    uncheckListItem() {
+        this.checked = false;
     }
 }
 

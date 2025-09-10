@@ -53,4 +53,4 @@ document.addEventListener("click", (e) => {
 
 
 
-Display.log();
+// Display.redraw();
