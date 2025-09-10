@@ -73,15 +73,23 @@ class Display {
         activeProject.type = "text";
         activeProject.classList.add("activeProject");
         activeProject.value = active.name;
-        activeProject.disabled = true;
+        if (active.edit === false) {
+            activeProject.disabled = true;
+        }
         header.appendChild(activeProject);
 
         const editProjectBtn = document.createElement("button");
         editProjectBtn.id = "editProjectBtn";
+        if (active.edit === true) {
+            editProjectBtn.classList.add("on");
+        }
         header.appendChild(editProjectBtn);
 
         const deleteProjectBtn = document.createElement("button");
         deleteProjectBtn.id = "deleteProjectBtn";
+        if (active.edit === false) {
+            deleteProjectBtn.style.display = "none";
+        }
         header.appendChild(deleteProjectBtn);
 
         const dueDateHeader = document.createElement("h3");
@@ -94,6 +102,129 @@ class Display {
         header.appendChild(sortBtn);
 
         //content notes
+        active.note.forEach(note => {
+            const noteContainer = document.createElement("div");
+            noteContainer.classList.add("note");
+            noteContainer.id = note.noteID;
+            content.appendChild(noteContainer);
+
+            const noteHeader = document.createElement("div");
+            noteHeader.classList.add("noteHeader");
+            noteContainer.appendChild(noteHeader);
+
+            const noteCheckedBtn = document.createElement("button");
+            noteCheckedBtn.id = "noteCheckedBtn";
+            if (note.checked === true) {
+                noteCheckedBtn.classList.add("checked");
+            } else {
+                noteCheckedBtn.classList.add("unchecked");
+            }
+            noteHeader.appendChild(noteCheckedBtn);
+
+            const noteTitle = document.createElement("input");
+            noteTitle.type = "text";
+            noteTitle.classList.add("noteTitle");
+            noteTitle.value = note.title;
+            if (note.edit === false) {
+                noteTitle.disabled = true;
+            }
+            noteHeader.appendChild(noteTitle);
+
+            const priorityFlag = document.createElement("h5");
+            priorityFlag.classList.add("priorityFlag");
+            priorityFlag.textContent = "High Priority";
+            if (note.priority !== "high") {
+                priorityFlag.style.display = "none";
+            }
+            noteHeader.appendChild(priorityFlag);
+
+            const dueDate = document.createElement("input");
+            dueDate.type = "text";
+            dueDate.classList.add("dueDate");
+            dueDate.value = note.dueDate;
+            if (note.edit === false) {
+                dueDate.disabled = true;
+            }
+            noteHeader.appendChild(dueDate);
+
+            const expandBtn = document.createElement("button");
+            expandBtn.id = "expandBtn";
+            if (note.expand === false) {
+                expandBtn.classList.add("collapsed");
+            } else if (note.expand === true) {
+                expandBtn.classList.add("expanded");
+            }
+            noteHeader.appendChild(expandBtn);
+
+            const noteBody = document.createElement("div");
+            noteBody.classList.add("noteBody");
+            if (note.expand === false) {
+                noteBody.style.display = "none";
+            }
+            noteContainer.appendChild(noteBody);
+
+            const desc = document.createElement("textarea");
+            desc.classList.add("desc");
+            desc.rows = "3";
+            desc.value = note.desc;
+            if (note.edit === false) {
+                desc.disabled = true;
+            }
+            noteBody.appendChild(desc);
+
+            const list = document.createElement("div");
+            list.classList.add("list");
+            noteBody.appendChild(list);
+
+            note.list.forEach(item => {
+                const listItem = document.createElement("div");
+                listItem.classList.add("listItem");
+                listItem.id = item.itemID;
+                list.appendChild(listItem);
+
+                const listItemCheckedBtn = document.createElement("button");
+                listItemCheckedBtn.id = "listItemCheckedBtn";
+                if (item.checked === false) {
+                    listItemCheckedBtn.classList.add("unchecked");
+                } else if (item.checked === true) {
+                    listItemCheckedBtn.classList.add("checked");
+                }
+                listItem.appendChild(listItemCheckedBtn)
+
+                const listItemText = document.createElement("p");
+                listItemText.classList.add("listItemText");
+                listItemText.textContent = item.item;
+                if (item.checked === true) {
+                    listItemText.classList.add("checked");
+                }
+                listItem.appendChild(listItemText);
+
+                const deleteListItemBtn = document.createElement("button");
+                deleteListItemBtn.id = "deleteListItemBtn";
+                if (note.edit === false) {
+                    deleteListItemBtn.disabled = true;
+                }
+                listItem.appendChild(deleteListItemBtn)
+            });
+
+            const addListItem = document.createElement("div");
+            addListItem.classList.add("addListItem");
+            list.appendChild(addListItem);
+
+            const addListItemBtn = document.createElement("button");
+            addListItemBtn.id = "addListItemBtn";
+            addListItem.appendChild(addListItemBtn);
+
+            const inputListItem = document.createElement("input");
+            inputListItem.type = "text";
+            inputListItem.classList.add("inputListItem");
+            inputListItem.placeholder = "New List Item";
+            addListItem.appendChild(inputListItem);
+
+            //resume here with div noteCtrl ///////////////////////////////////////////
+
+
+        });
 
         //content add note
     }
@@ -130,8 +261,10 @@ export default Display;
     // ========== functionality testing ========== //
 
 Projects.addProject("firstProject");
-Projects.project[0].addNote("This is an example note", "description text", "Today", "high");
+Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "Today", "high");
+Projects.project[0].editOff();
 Projects.project[0].note[0].addListItem("This is an example list item");
+Projects.project[0].note[0].editNoteOff();
 Projects.project[0].note[0].expandNote();
 Projects.project[0].note[0].addListItem("Example checked item");
 Projects.project[0].note[0].list[1].checkListItem();

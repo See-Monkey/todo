@@ -208,7 +208,8 @@ input.inputProject:disabled {
   align-self: center;
 }
 
-#editProjectBtn:hover {
+#editProjectBtn:hover,
+#editProjectBtn.on {
   background-color: var(--blue);
   box-shadow: 2px 2px 14px var(--l-teal);
 }
@@ -279,12 +280,19 @@ input.inputProject:disabled {
 #noteCheckedBtn {
   width: 50px;
   height: 50px;
-  background-image: url("../img/unchecked.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
   background-color: var(--silver);
+}
+
+#noteCheckedBtn.unchecked {
+  background-image: url("../img/unchecked.svg");
+}
+
+#noteCheckedBtn.checked {
+  background-image: url("../img/checked.svg");
 }
 
 #noteCheckedBtn:hover {
@@ -299,6 +307,7 @@ input.inputProject:disabled {
   font-size: 18px;
   font-weight: 500;
   border-radius: 6px;
+  margin-right: auto;
 }
 
 .noteTitle:disabled {
@@ -331,12 +340,19 @@ input.inputProject:disabled {
 #expandBtn {
   width: 50px;
   height: 50px;
-  background-image: url("../img/expand.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 25px;
   background-color: var(--silver);
+}
+
+#expandBtn.expanded {
+  background-image: url("../img/collapse.svg");
+}
+
+#expandBtn.collapsed {
+  background-image: url("../img/expand.svg");
 }
 
 #expandBtn:hover {
@@ -380,12 +396,19 @@ input.inputProject:disabled {
 #listItemCheckedBtn {
   width: 46px;
   height: 28px;
-  background-image: url("../img/toggle-switch-off.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px 40px;
   border-radius: 14px;
   background-color: var(--silver);
+}
+
+#listItemCheckedBtn.checked {
+  background-image: url("../img/toggle-switch-on.svg");
+}
+
+#listItemCheckedBtn.unchecked {
+  background-image: url("../img/toggle-switch-off.svg");
 }
 
 #listItemCheckedBtn:hover {
@@ -395,6 +418,10 @@ input.inputProject:disabled {
 
 .listItemText {
 
+}
+
+.listItemText.checked {
+  text-decoration: line-through;
 }
 
 #deleteListItemBtn {
