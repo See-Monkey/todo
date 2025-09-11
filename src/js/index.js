@@ -7,28 +7,27 @@ const Display = new disp();
 
 document.addEventListener("click", (e) => {
     let target = e.target;
-    let targetID = "";
     if (target.classList.contains("project")) {
-        console.log("clicked a project button")
+        Display.setActive(target.id);
     }
     switch(target.id) {
         case "addProjectBtn":
-            console.log("clicked addProject button");
+            Display.addProject();
             break;
         case "editProjectBtn":
-            console.log("clicked editProject button");
+            Display.editProject();
             break;
         case "deleteProjectBtn":
-            console.log("clicked deleteProject button");
+            Display.deleteProject();
             break;
         case "sortBtn":
             console.log("clicked sort button");
             break;
         case "noteCheckedBtn":
-            console.log("clicked noteChecked button");
+            Display.noteCheck(target.parentElement.parentElement.id);
             break;
         case "expandBtn":
-            console.log("clicked expand button");
+            Display.expand(target.parentElement.parentElement.id);
             break;
         case "listItemCheckedBtn":
             console.log("clicked listItemChecked button");
@@ -40,10 +39,10 @@ document.addEventListener("click", (e) => {
             console.log("clicked addListItem button");
             break;
         case "editNoteBtn":
-            console.log("clicked editNote button");
+            Display.editNote(target.parentElement.parentElement.parentElement.id);
             break;
         case "deleteNoteBtn":
-            console.log("clicked deleteNote button");
+            Display.deleteNote(target.parentElement.parentElement.parentElement.id);
             break;
         case "addNoteBtn":
             console.log("clicked addNote button");
@@ -53,4 +52,4 @@ document.addEventListener("click", (e) => {
 
 
 
-Display.redraw();
+Display.init();

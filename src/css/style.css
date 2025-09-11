@@ -371,6 +371,7 @@ input.inputProject:disabled {
   width: 100%;
   text-align: left;
   resize: none;
+  field-sizing: content;
   background-color: var(--white);
   padding: 4px 8px;
   border-radius: 6px;

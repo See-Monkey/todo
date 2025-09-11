@@ -100,7 +100,7 @@ class Note {
         this.expand = true;
     }
 
-    collapse() {
+    collapseNote() {
         this.expand = false;
     }
 }

@@ -16,6 +16,10 @@ class Display {
         this.clear();
         let active;
 
+        if (Projects.project.length !== 0) {
+            
+        }
+
         //sidebar header
         const sidebar = document.querySelector(".sidebar");
 
@@ -33,6 +37,7 @@ class Display {
         logo.appendChild(logoText);
 
         //sidebar projects
+        if (Projects.project.length !== 0) {
         Projects.project.forEach(project => {
             const button = document.createElement("button");
             button.classList.add("project");
@@ -44,6 +49,7 @@ class Display {
             }
             sidebar.appendChild(button);
         });
+        }
 
         //sidebar add project
         const addProject = document.createElement("div");
@@ -55,7 +61,9 @@ class Display {
         inputProject.classList.add("inputProject");
         inputProject.placeholder = "New Project";
         inputProject.size = "13";
-        inputProject.disabled = true;
+        if (Projects.project.length !== 0) {
+            inputProject.disabled = true;
+        }
         addProject.appendChild(inputProject);
 
         const addProjectBtn = document.createElement("button");
@@ -63,6 +71,7 @@ class Display {
         addProject.appendChild(addProjectBtn);
 
         //content header
+        if (Projects.project.length !== 0) {
         const content = document.querySelector(".content");
 
         const header = document.createElement("div");
@@ -280,20 +289,95 @@ class Display {
         const addNoteBtn = document.createElement("button");
         addNoteBtn.id = "addNoteBtn";
         content.appendChild(addNoteBtn);
+        }
     }
-    //init
 
-    //add project
+    init() {
+        this.redraw();
+    }
 
-    //edit project
+    activeProjectIndex() {
+        const index = Projects.project.findIndex(project => project.active === true);
+        return index;
+    }
 
-    //delete project
+    setActive(id) {
+        const index = Projects.project.findIndex(project => project.projectID === id);
+        Projects.setActive(index);
+        this.redraw();
+    }
+
+    addProject() {
+        const inputProject = document.querySelector(".inputProject");
+
+        if (inputProject.disabled === true) {
+            inputProject.disabled = false;
+            inputProject.focus();
+            return;
+        } else {
+            if (inputProject.value === "") {
+                alert("Please enter a project name.");
+            } else {
+                Projects.addProject(inputProject.value);
+                inputProject.disable = true;
+                this.redraw();
+            }
+        }
+    }
+
+    editProject() {
+        const activeProject = document.querySelector(".activeProject");
+        const index = this.activeProjectIndex();
+
+        if (activeProject.disabled === true) {
+            Projects.project[index].editOn();
+            this.redraw();
+            activeProject.focus();
+            return;
+        } else {
+            if (activeProject.value === "") {
+                alert("Project name cannot be empty.");
+            } else {
+                Projects.project[index].name = activeProject.value;
+                Projects.project[index].editOff();
+                this.redraw();
+            }
+        }
+    }
+
+    deleteProject() {
+        const activeProject = this.activeProjectIndex();
+        Projects.project.splice(activeProject, 1);
+
+        if (Projects.project.length !== 0) {
+            Projects.setActive(0);
+        }
+        this.redraw();
+    }
 
     //sort
 
-    //note check
+    noteCheck(id) {
+        const activeProject = this.activeProjectIndex()
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
+        if (Projects.project[activeProject].note[targetNoteIndex].checked === false) {
+        Projects.project[activeProject].note[targetNoteIndex].checkNote();
+        } else if (Projects.project[activeProject].note[targetNoteIndex].checked === true) {
+        Projects.project[activeProject].note[targetNoteIndex].uncheckNote();
+        }
+        this.redraw();
+    }
 
-    //note expand
+    expand(id) {
+        const activeProject = this.activeProjectIndex()
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
+        if (Projects.project[activeProject].note[targetNoteIndex].expand === false) {
+        Projects.project[activeProject].note[targetNoteIndex].expandNote();
+        } else if (Projects.project[activeProject].note[targetNoteIndex].expand === true) {
+        Projects.project[activeProject].note[targetNoteIndex].collapseNote();
+        }
+        this.redraw();
+    }
 
     //list check
 
@@ -302,8 +386,24 @@ class Display {
     //add list item
 
     //edit note
+    editNote(id) {
+        const activeProject = this.activeProjectIndex();
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
+        if (Projects.project[activeProject].note[targetNoteIndex].edit === false) {
+        Projects.project[activeProject].note[targetNoteIndex].editNoteOn();
+        } else if (Projects.project[activeProject].note[targetNoteIndex].edit === true) {
+        Projects.project[activeProject].note[targetNoteIndex].editNoteOff();
+        }
+        this.redraw();
+    }
 
     //delete note
+    deleteNote(id) {
+        const activeProject = this.activeProjectIndex();
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
+        Projects.project[activeProject].note.splice(targetNoteIndex, 1);
+        this.redraw();
+    }
 
     //add note
 
