@@ -353,6 +353,7 @@ input.inputProject:disabled {
 
 #expandBtn.collapsed {
   background-image: url("../img/expand.svg");
+  background-color: var(--white);
 }
 
 #expandBtn:hover {
@@ -510,7 +511,8 @@ input.inputProject:disabled {
   background-color: var(--l-teal);
 }
 
-#editNoteBtn:hover {
+#editNoteBtn:hover,
+#editNoteBtn.on {
   background-color: var(--blue);
   box-shadow: 2px 2px 14px var(--l-teal);
 }

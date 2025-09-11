@@ -221,12 +221,65 @@ class Display {
             inputListItem.placeholder = "New List Item";
             addListItem.appendChild(inputListItem);
 
-            //resume here with div noteCtrl ///////////////////////////////////////////
+            const noteCtrl = document.createElement("div");
+            noteCtrl.classList.add("noteCtrl");
+            noteBody.appendChild(noteCtrl);
 
+            const priorityLabel = document.createElement("label");
+            priorityLabel.htmlFor = "priority";
+            priorityLabel.textContent = "Priority:";
+            noteCtrl.appendChild(priorityLabel);
 
+            const priority = document.createElement("select");
+            priority.name = "priority";
+            priority.id = "priority";
+            if (note.edit === false) {
+                priority.disabled = true;
+            }
+            noteCtrl.appendChild(priority);
+
+            const high = document.createElement("option");
+            high.value = "high";
+            high.textContent = "High";
+            if (note.priority === "high") {
+                high.selected = true;
+            }
+            priority.appendChild(high);
+
+            const medium = document.createElement("option");
+            medium.value = "medium";
+            medium.textContent = "Medium";
+            if (note.priority === "medium") {
+                medium.selected = true;
+            }
+            priority.appendChild(medium);
+
+            const low = document.createElement("option");
+            low.value = "low";
+            low.textContent = "Low";
+            if (note.priority === "low") {
+                low.selected = true;
+            }
+            priority.appendChild(low);
+
+            const editNoteBtn = document.createElement("button");
+            editNoteBtn.id = "editNoteBtn";
+            if (note.edit === true) {
+                editNoteBtn.classList.add("on");
+            }
+            noteCtrl.appendChild(editNoteBtn);
+
+            const deleteNoteBtn = document.createElement("button");
+            deleteNoteBtn.id = "deleteNoteBtn";
+            if (note.edit === false) {
+                deleteNoteBtn.disabled = true;
+            }
+            noteCtrl.appendChild(deleteNoteBtn);
         });
 
-        //content add note
+        const addNoteBtn = document.createElement("button");
+        addNoteBtn.id = "addNoteBtn";
+        content.appendChild(addNoteBtn);
     }
     //init
 
