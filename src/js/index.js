@@ -30,13 +30,13 @@ document.addEventListener("click", (e) => {
             Display.expand(target.parentElement.parentElement.id);
             break;
         case "listItemCheckedBtn":
-            console.log("clicked listItemChecked button");
+            Display.listCheck(target.parentElement.id, target.parentElement.parentElement.parentElement.parentElement.id);
             break;
         case "deleteListItemBtn":
-            console.log("clicked deleteListItem button");
+            Display.deleteListItem(target.parentElement.id, target.parentElement.parentElement.parentElement.parentElement.id);
             break;
         case "addListItemBtn":
-            console.log("clicked addListItem button");
+            Display.addListItem(target.parentElement.parentElement.parentElement.parentElement.id);
             break;
         case "editNoteBtn":
             Display.editNote(target.parentElement.parentElement.parentElement.id);
@@ -45,8 +45,10 @@ document.addEventListener("click", (e) => {
             Display.deleteNote(target.parentElement.parentElement.parentElement.id);
             break;
         case "addNoteBtn":
-            console.log("clicked addNote button");
+            Display.addNote();
             break;
+        case "submitNoteBtn":
+            Display.submitNote();
     }
 });
 

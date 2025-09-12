@@ -20,7 +20,7 @@ class Display {
             
         }
 
-        //sidebar header
+        // ===== sidebar header
         const sidebar = document.querySelector(".sidebar");
 
         const logo = document.createElement("div");
@@ -36,7 +36,7 @@ class Display {
         logoText.textContent = "Planit";
         logo.appendChild(logoText);
 
-        //sidebar projects
+        // ===== sidebar projects
         if (Projects.project.length !== 0) {
         Projects.project.forEach(project => {
             const button = document.createElement("button");
@@ -51,7 +51,7 @@ class Display {
         });
         }
 
-        //sidebar add project
+        // ===== sidebar add project
         const addProject = document.createElement("div");
         addProject.classList.add("addProject");
         sidebar.appendChild(addProject);
@@ -70,8 +70,9 @@ class Display {
         addProjectBtn.id = "addProjectBtn";
         addProject.appendChild(addProjectBtn);
 
-        //content header
-        if (Projects.project.length !== 0) {
+        // ===== content header
+    if (Projects.project.length !== 0) {
+
         const content = document.querySelector(".content");
 
         const header = document.createElement("div");
@@ -110,7 +111,7 @@ class Display {
         sortBtn.id = "sortBtn";
         header.appendChild(sortBtn);
 
-        //content notes
+        // ===== content notes
         active.note.forEach(note => {
             const noteContainer = document.createElement("div");
             noteContainer.classList.add("note");
@@ -285,12 +286,89 @@ class Display {
             }
             noteCtrl.appendChild(deleteNoteBtn);
         });
+    }
+
+        // ===== content add note
+        const content = document.querySelector(".content");
 
         const addNoteBtn = document.createElement("button");
         addNoteBtn.id = "addNoteBtn";
         content.appendChild(addNoteBtn);
-        }
+
+        const newNoteContainer = document.createElement("div");
+        newNoteContainer.classList.add("note");
+        newNoteContainer.classList.add("newNoteContainer");
+        newNoteContainer.style.display = "none";
+        content.appendChild(newNoteContainer);
+
+        const newNoteHeader = document.createElement("div");
+        newNoteHeader.classList.add("noteHeader");
+        newNoteContainer.appendChild(newNoteHeader);
+
+        const newNoteTitle = document.createElement("input");
+        newNoteTitle.type = "text";
+        newNoteTitle.classList.add("noteTitle");
+        newNoteTitle.classList.add("newNoteTitle");
+        newNoteTitle.placeholder = "New Note Title";
+        newNoteHeader.appendChild(newNoteTitle);
+
+        const newDueDate = document.createElement("input");
+        newDueDate.type = "text";
+        newDueDate.classList.add("dueDate");
+        newDueDate.classList.add("newDueDate");
+        newDueDate.placeholder = "Due Date";
+        newNoteHeader.appendChild(newDueDate);
+
+        const newNoteBody = document.createElement("div");
+        newNoteBody.classList.add("noteBody");
+        newNoteContainer.appendChild(newNoteBody);
+
+        const newDesc = document.createElement("textarea");
+        newDesc.classList.add("desc");
+        newDesc.classList.add("newDesc");
+        newDesc.rows = "3";
+        newDesc.placeholder = "Description (optional)";
+        newNoteBody.appendChild(newDesc);
+
+        const newNoteCtrl = document.createElement("div");
+        newNoteCtrl.classList.add("noteCtrl");
+        newNoteBody.appendChild(newNoteCtrl);
+
+        const newPriorityLabel = document.createElement("label");
+        newPriorityLabel.htmlFor = "priority";
+        newPriorityLabel.textContent = "Priority:";
+        newNoteCtrl.appendChild(newPriorityLabel);
+
+        const newPriority = document.createElement("select");
+        newPriority.name = "priority";
+        newPriority.id = "newPriority";
+        newNoteCtrl.appendChild(newPriority);
+
+        const high = document.createElement("option");
+        high.value = "high";
+        high.textContent = "High";
+
+        newPriority.appendChild(high);
+
+        const medium = document.createElement("option");
+        medium.value = "medium";
+        medium.textContent = "Medium";
+
+        medium.selected = true;
+
+        newPriority.appendChild(medium);
+
+        const low = document.createElement("option");
+        low.value = "low";
+        low.textContent = "Low";
+        newPriority.appendChild(low);
+
+        const submitNoteBtn = document.createElement("button");
+        submitNoteBtn.id = "submitNoteBtn";
+        newNoteCtrl.appendChild(submitNoteBtn);
     }
+
+
 
     init() {
         this.redraw();
@@ -358,7 +436,7 @@ class Display {
     //sort
 
     noteCheck(id) {
-        const activeProject = this.activeProjectIndex()
+        const activeProject = this.activeProjectIndex();
         const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
         if (Projects.project[activeProject].note[targetNoteIndex].checked === false) {
         Projects.project[activeProject].note[targetNoteIndex].checkNote();
@@ -369,7 +447,7 @@ class Display {
     }
 
     expand(id) {
-        const activeProject = this.activeProjectIndex()
+        const activeProject = this.activeProjectIndex();
         const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
         if (Projects.project[activeProject].note[targetNoteIndex].expand === false) {
         Projects.project[activeProject].note[targetNoteIndex].expandNote();
@@ -379,25 +457,67 @@ class Display {
         this.redraw();
     }
 
-    //list check
+    listCheck(listID, noteID) {
+        const activeProject = this.activeProjectIndex();
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === noteID);
+        const targetListIndex = Projects.project[activeProject].note[targetNoteIndex].list.findIndex(listItem => listItem.itemID === listID);
+        if (Projects.project[activeProject].note[targetNoteIndex].list[targetListIndex].checked === false) {
+            Projects.project[activeProject].note[targetNoteIndex].list[targetListIndex].checkListItem();
+            this.redraw();
+        } else {
+            Projects.project[activeProject].note[targetNoteIndex].list[targetListIndex].uncheckListItem();
+            this.redraw();
+        }
+    }
 
-    //delete list item
+    deleteListItem(listID, noteID) {
+        const activeProject = this.activeProjectIndex();
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === noteID);
+        const targetListIndex = Projects.project[activeProject].note[targetNoteIndex].list.findIndex(listItem => listItem.itemID === listID);
+        Projects.project[activeProject].note[targetNoteIndex].deleteListItem(targetListIndex);
+        this.redraw();
+    }
 
-    //add list item
+    addListItem(noteID) {
+        const activeProject = this.activeProjectIndex();
+        const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === noteID);
+        const inputListItem = document.querySelector(`#${CSS.escape(noteID)} .inputListItem`);
+        if (inputListItem.value === "") {
+            alert("List item cannot be empty");
+        } else {
+            Projects.project[activeProject].note[targetNoteIndex].addListItem(inputListItem.value);
+            this.redraw();
+        }
+    }
 
-    //edit note
     editNote(id) {
         const activeProject = this.activeProjectIndex();
         const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
+        const activeProjectTitle = document.querySelector(`#${CSS.escape(id)} .noteTitle`);
+        const activeProjectDueDate = document.querySelector(`#${CSS.escape(id)} .dueDate`);
+        const activeProjectDesc = document.querySelector(`#${CSS.escape(id)} .desc`);
+        const activeProjectPriority = document.querySelector(`#${CSS.escape(id)} #priority`);
+        
         if (Projects.project[activeProject].note[targetNoteIndex].edit === false) {
         Projects.project[activeProject].note[targetNoteIndex].editNoteOn();
+        this.redraw();
+        return;
         } else if (Projects.project[activeProject].note[targetNoteIndex].edit === true) {
-        Projects.project[activeProject].note[targetNoteIndex].editNoteOff();
+            if (activeProjectTitle.value === "") {
+                alert("Note must have a name.");
+            } else if (activeProjectDueDate.value === "") {
+                alert("Note must have a due date.")
+            } else {
+                Projects.project[activeProject].note[targetNoteIndex].title = activeProjectTitle.value;
+                Projects.project[activeProject].note[targetNoteIndex].dueDate = activeProjectDueDate.value;
+                Projects.project[activeProject].note[targetNoteIndex].desc = activeProjectDesc.value;
+                Projects.project[activeProject].note[targetNoteIndex].priority = activeProjectPriority.value;
+                Projects.project[activeProject].note[targetNoteIndex].editNoteOff();
+            }
         }
         this.redraw();
     }
 
-    //delete note
     deleteNote(id) {
         const activeProject = this.activeProjectIndex();
         const targetNoteIndex = Projects.project[activeProject].note.findIndex(note => note.noteID === id);
@@ -405,8 +525,32 @@ class Display {
         this.redraw();
     }
 
-    //add note
+    addNote() {
+        const addNoteBtn = document.querySelector("#addNoteBtn");
+        const newNoteContainer = document.querySelector(".newNoteContainer");
 
+        if (addNoteBtn.disabled === false) {
+            addNoteBtn.disabled = true;
+            newNoteContainer.style.display = "flex";
+        }
+    }
+
+    submitNote() {
+        const newNoteTitle = document.querySelector(".newNoteTitle");
+        const newDueDate = document.querySelector(".newDueDate");
+        const newDesc = document.querySelector(".newDesc");
+        const newPriority = document.querySelector("#newPriority");
+
+        if (newNoteTitle.value === "") {
+            alert("Note must have a title.");
+        } else if (newDueDate.vale === "") {
+            alert("Note must have a due date.");
+        } else {
+            const index = this.activeProjectIndex();
+            Projects.project[index].addNote(newNoteTitle.value, newDesc.value, newDueDate.value, newPriority.value);
+            this.redraw();
+        }
+    }
 }
 
 export default Display;
