@@ -116,10 +116,16 @@ class Display {
             const noteContainer = document.createElement("div");
             noteContainer.classList.add("note");
             noteContainer.id = note.noteID;
+            if (note.checked === true) {
+                noteContainer.classList.add("checked");
+            }
             content.appendChild(noteContainer);
 
             const noteHeader = document.createElement("div");
             noteHeader.classList.add("noteHeader");
+            if (note.checked === true) {
+                noteHeader.classList.add("checked");
+            }
             noteContainer.appendChild(noteHeader);
 
             const noteCheckedBtn = document.createElement("button");
@@ -137,6 +143,9 @@ class Display {
             noteTitle.value = note.title;
             if (note.edit === false) {
                 noteTitle.disabled = true;
+            }
+            if (note.checked === true) {
+                noteTitle.classList.add("checked");
             }
             noteHeader.appendChild(noteTitle);
 
@@ -170,6 +179,9 @@ class Display {
             noteBody.classList.add("noteBody");
             if (note.expand === false) {
                 noteBody.style.display = "none";
+            }
+            if (note.checked === true) {
+                noteBody.classList.add("checked");
             }
             noteContainer.appendChild(noteBody);
 
