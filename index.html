@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planit</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logoImg"></div>
+                <h1 class="logoText">Planit</h1>
+            </div>
+            <button class="project">Project 1</button>
+            <button class="project">Project 2</button>
+            <div class="addProject">
+                <input type="text" class="inputProject" placeholder="New Project" size="13">
+                <button id="addProjectBtn"></button>
+            </div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <input type="text" class="activeProject" value="Active Project">
+                <button id="editProjectBtn"></button>
+                <button id="deleteProjectBtn"></button>
+                <h3 class="dueDateHeader">Due Date</h3>
+                <button id="sortBtn"></button>
+            </div>
+            <div class="note">
+                <div class="noteHeader">
+                    <button id="noteCheckedBtn"></button>
+                    <input type="text" class="noteTitle" value="This is an example note.">
+                    <h5 class="priorityFlag">High Priority</h5>
+                    <input type="text" class="dueDate" value="Today">
+                    <button id="expandBtn"></button>
+                </div>
+                <div class="noteBody">
+                    <textarea class="desc" rows="3">Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!</textarea>
+                    <div class="list">
+                        <div class="listItem">
+                            <button id="listItemCheckedBtn"></button>
+                            <p class="listItemText">List item text</p>
+                            <button id="deleteListItemBtn"></button>
+                        </div>
+                        <div class="addListItem">
+                            <button id="addListItemBtn"></button>
+                            <input type="text" class="inputListItem" placeholder="New List Item">
+                        </div>
+                    </div>
+                    <div class="noteCtrl">
+                        <label for="priority">Priority:</label>
+                        <select id="priority" name="priority">
+                            <option value="high">High</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <button id="editNoteBtn"></button>
+                        <button id="deleteNoteBtn"></button>
+                    </div>
+                </div>
+            </div>
+            <button id="addNoteBtn"></button>
+        </div>
+    </div>
+</body>
+</html>
