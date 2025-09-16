@@ -644,15 +644,15 @@ class Display {
     }
 
     createSampleProject() {
-        Projects.addProject("firstProject");
-        Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "2025-10-01", "high");
+        Projects.addProject("My First Project");
+        Projects.project[0].addNote("This is an example note", "The description field is completely optional, and can be used to store as much text as your note needs. Toggle the edit button in the lower right corner of a note to modify or delete it. You can add list items for each note, and check them off as you complete them. Toggle edit mode to delete list items. You can check off the entire note in the upper left.", "2025-10-01", "high");
         Projects.project[0].editOff();
         Projects.project[0].note[0].addListItem("This is an example list item");
         Projects.project[0].note[0].editNoteOff();
         Projects.project[0].note[0].expandNote();
         Projects.project[0].note[0].addListItem("Example checked item");
         Projects.project[0].note[0].list[1].checkListItem();
-        Projects.project[0].addNote("This is a closed note", "description text", "2025-09-30", "medium");
+        Projects.project[0].addNote("This is a closed note                      Expand ------>", "All your notes will be saved with every edit, including which items have been checked off, which notes are collapsed or expanded, and how the notes have been sorted. Try adding a new project on the left, and putting some notes into it!", "2025-09-30", "medium");
     }
 }
 
