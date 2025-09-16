@@ -13,7 +13,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Poppins", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 img, picture, video, canvas, svg {
   display: block;
@@ -239,7 +239,7 @@ input.inputProject:disabled {
 
 .dueDateHeader {
   margin-left: auto;
-  margin-right: 20px;
+  margin-right: 70px;
   text-shadow: 1px 1px 3px var(--blue);
 }
 
