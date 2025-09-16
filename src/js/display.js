@@ -339,7 +339,6 @@ class Display {
         newDueDate.type = "date";
         newDueDate.classList.add("dueDate");
         newDueDate.classList.add("newDueDate");
-        newDueDate.placeholder = "Due Date";
         newNoteHeader.appendChild(newDueDate);
 
         const newNoteBody = document.createElement("div");
@@ -604,7 +603,7 @@ class Display {
 
         if (newNoteTitle.value === "") {
             alert("Note must have a title.");
-        } else if (newDueDate.vale === "") {
+        } else if (newDueDate.value === "") {
             alert("Note must have a due date.");
         } else {
             const index = this.activeProjectIndex();
