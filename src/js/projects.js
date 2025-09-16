@@ -28,6 +28,7 @@ class Project {
         this.active = false;
         this.edit = false;
         this.projectID = crypto.randomUUID();
+        this.sort = "";
     }
 
         addNote(title, desc, dueDate, priority) {

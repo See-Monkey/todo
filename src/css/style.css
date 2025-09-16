@@ -259,6 +259,11 @@ input.inputProject:disabled {
   box-shadow: 2px 2px 14px var(--l-teal);
 }
 
+.sortMsg {
+  align-self: flex-end;
+  color: var(--silver);
+}
+
 .note {
   display: flex;
   flex-direction: column;

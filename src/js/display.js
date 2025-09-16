@@ -1,4 +1,5 @@
 import proj from "./projects.js";
+import { isToday, isTomorrow } from "date-fns";
 const Projects = new proj();
 
 class Display {
@@ -111,6 +112,16 @@ class Display {
         sortBtn.id = "sortBtn";
         header.appendChild(sortBtn);
 
+        // ===== sort message
+        const sortMsg = document.createElement("p");
+        sortMsg.classList.add("sortMsg");
+        if (active.sort === "") {
+            sortMsg.textContent = `Showing ${active.note.length} notes. Not sorted.`;
+        } else {
+            sortMsg.textContent = `Showing ${active.note.length} notes. Sorted by ${active.sort}.`;
+        }
+        content.appendChild(sortMsg);
+
         // ===== content notes
         active.note.forEach(note => {
             const noteContainer = document.createElement("div");
@@ -158,7 +169,7 @@ class Display {
             noteHeader.appendChild(priorityFlag);
 
             const dueDate = document.createElement("input");
-            dueDate.type = "text";
+            dueDate.type = "date";
             dueDate.classList.add("dueDate");
             dueDate.value = note.dueDate;
             if (note.edit === false) {
@@ -325,7 +336,7 @@ class Display {
         newNoteHeader.appendChild(newNoteTitle);
 
         const newDueDate = document.createElement("input");
-        newDueDate.type = "text";
+        newDueDate.type = "date";
         newDueDate.classList.add("dueDate");
         newDueDate.classList.add("newDueDate");
         newDueDate.placeholder = "Due Date";
@@ -399,6 +410,7 @@ class Display {
 
     addProject() {
         const inputProject = document.querySelector(".inputProject");
+        const activeProject = this.activeProjectIndex();
 
         if (inputProject.disabled === true) {
             inputProject.disabled = false;
@@ -445,7 +457,42 @@ class Display {
         this.redraw();
     }
 
-    //sort
+    sortNotes() {
+        const activeProject = this.activeProjectIndex();
+        if (Projects.project[activeProject].sort === "") {
+            Projects.project[activeProject].sort = "priority";
+        }
+        if (Projects.project[activeProject].sort === "priority") {
+            Projects.project[activeProject].sort = "date";
+            this.sortNotesByDate();
+        } else if (Projects.project[activeProject].sort === "date") {
+            Projects.project[activeProject].sort = "priority";
+            this.sortNotesByPriority();
+        }
+    }
+    
+    sortNotesByDate() {
+        const activeProject = this.activeProjectIndex();
+        Projects.project[activeProject].note.sort((a, b) => {
+            const dateA = new Date(a.dueDate);
+            const dateB = new Date(b.dueDate);
+            return dateA - dateB;
+        });
+        this.redraw();
+    }
+
+    sortNotesByPriority() {
+        const activeProject = this.activeProjectIndex();
+        const priorityOrder = {
+            high: 1,
+            medium: 2,
+            low: 3,
+        };
+        Projects.project[activeProject].note.sort((a, b) => {
+            return priorityOrder[a.priority] - priorityOrder[b.priority]
+        });
+        this.redraw();
+    }
 
     noteCheck(id) {
         const activeProject = this.activeProjectIndex();
@@ -527,6 +574,7 @@ class Display {
                 Projects.project[activeProject].note[targetNoteIndex].editNoteOff();
             }
         }
+        Projects.project[activeProject].sort = "";
         this.redraw();
     }
 
@@ -548,6 +596,7 @@ class Display {
     }
 
     submitNote() {
+        const activeProject = this.activeProjectIndex();
         const newNoteTitle = document.querySelector(".newNoteTitle");
         const newDueDate = document.querySelector(".newDueDate");
         const newDesc = document.querySelector(".newDesc");
@@ -560,6 +609,7 @@ class Display {
         } else {
             const index = this.activeProjectIndex();
             Projects.project[index].addNote(newNoteTitle.value, newDesc.value, newDueDate.value, newPriority.value);
+            Projects.project[activeProject].sort = "";
             this.redraw();
         }
     }
@@ -570,12 +620,12 @@ export default Display;
     // ========== functionality testing ========== //
 
 Projects.addProject("firstProject");
-Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "Today", "high");
+Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "2025-10-01", "high");
 Projects.project[0].editOff();
 Projects.project[0].note[0].addListItem("This is an example list item");
 Projects.project[0].note[0].editNoteOff();
 Projects.project[0].note[0].expandNote();
 Projects.project[0].note[0].addListItem("Example checked item");
 Projects.project[0].note[0].list[1].checkListItem();
-Projects.project[0].addNote("This is a closed note", "description text", "Tomorrow", "medium");
+Projects.project[0].addNote("This is a closed note", "description text", "2025-09-30", "medium");
 console.log(Projects.project);

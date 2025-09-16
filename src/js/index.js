@@ -21,7 +21,7 @@ document.addEventListener("click", (e) => {
             Display.deleteProject();
             break;
         case "sortBtn":
-            console.log("clicked sort button");
+            Display.sortNotes();
             break;
         case "noteCheckedBtn":
             Display.noteCheck(target.parentElement.parentElement.id);
