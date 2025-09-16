@@ -1,9 +1,43 @@
 import proj from "./projects.js";
 import { isToday, isTomorrow } from "date-fns";
-const Projects = new proj();
+let Projects = new proj();
 
 class Display {
     constructor() {}
+
+    init(storageAvailable) {
+        if (storageAvailable === false ||
+            localStorage.length === 0) {
+            this.createSampleProject();
+            console.log(Projects.project);
+        } else {
+            const storedProjects = localStorage.getItem("projectData");
+            const parseProjects = JSON.parse(storedProjects);
+            const activeIndex = parseProjects.findIndex(project => project.active === true);
+            parseProjects.forEach((project, projIndex) => {
+                Projects.addProject(project.name);
+                Projects.project[projIndex].sort = project.sort;
+                project.note.forEach((note, noteIndex) => {
+                    Projects.project[projIndex].addNote(note.title, note.desc, note.dueDate, note.priority);
+                    Projects.project[projIndex].note[noteIndex].checked = note.checked;
+                    Projects.project[projIndex].note[noteIndex].expand = note.expand;
+                    note.list.forEach((item, itemIndex) => {
+                        Projects.project[projIndex].note[noteIndex].addListItem(item.item);
+                        Projects.project[projIndex].note[noteIndex].list[itemIndex].checked = item.checked;
+                    });
+                });
+            });
+
+            Projects.setActive(activeIndex);
+            console.log(Projects.project);
+        }
+        this.redraw();
+    }
+
+    save() {
+        const projectsJSON = JSON.stringify(Projects.project);
+        localStorage.setItem("projectData", projectsJSON);
+    }
 
     clear() {
         const sidebar = document.querySelector(".sidebar");
@@ -388,12 +422,8 @@ class Display {
         const submitNoteBtn = document.createElement("button");
         submitNoteBtn.id = "submitNoteBtn";
         newNoteCtrl.appendChild(submitNoteBtn);
-    }
 
-
-
-    init() {
-        this.redraw();
+        this.save();
     }
 
     activeProjectIndex() {
@@ -612,19 +642,18 @@ class Display {
             this.redraw();
         }
     }
+
+    createSampleProject() {
+        Projects.addProject("firstProject");
+        Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "2025-10-01", "high");
+        Projects.project[0].editOff();
+        Projects.project[0].note[0].addListItem("This is an example list item");
+        Projects.project[0].note[0].editNoteOff();
+        Projects.project[0].note[0].expandNote();
+        Projects.project[0].note[0].addListItem("Example checked item");
+        Projects.project[0].note[0].list[1].checkListItem();
+        Projects.project[0].addNote("This is a closed note", "description text", "2025-09-30", "medium");
+    }
 }
 
 export default Display;
-
-    // ========== functionality testing ========== //
-
-Projects.addProject("firstProject");
-Projects.project[0].addNote("This is an example note", "Natus a non cumque tempore error distinctio? Aliquid sunt, nihil, dignissimos assumenda quia ea nisi, quas veniam ex debitis tempore doloribus dicta!", "2025-10-01", "high");
-Projects.project[0].editOff();
-Projects.project[0].note[0].addListItem("This is an example list item");
-Projects.project[0].note[0].editNoteOff();
-Projects.project[0].note[0].expandNote();
-Projects.project[0].note[0].addListItem("Example checked item");
-Projects.project[0].note[0].list[1].checkListItem();
-Projects.project[0].addNote("This is a closed note", "description text", "2025-09-30", "medium");
-console.log(Projects.project);
